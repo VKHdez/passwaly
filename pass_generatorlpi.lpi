@@ -45,11 +45,11 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="img\main_class.pas"/>
+        <Filename Value="main_class.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="string_operator.pas"/>
+        <Filename Value="pw_utils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
     </Units>
@@ -62,7 +62,6 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="img"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

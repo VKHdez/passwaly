@@ -149,7 +149,7 @@ end;
 { Generate password }
 procedure Tmain_form.GenerateClick(Sender: TObject);
 begin
-    main_class.generatePassword(PWData);
+    pass_result_field.Text := main_class.generatePassword(PWData);
 end;
 
 end. { END PROGRAM }

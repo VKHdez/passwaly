@@ -5,16 +5,14 @@ unit utilities;
 interface
 
 uses
-      Classes, SysUtils;
+      Classes, SysUtils, Math;
 
-type
-    function getRandomIntBetweenValues(minValue : Integer, maxValue : Integer) : Integer;
+function getRandomIntBetweenRange(minValue : Integer; maxValue : Integer) : Integer;
 
 implementation
 
-function getRandomIntBetweenValues(const minValue : Integer, const maxValue : Integer) : Integer;
+function getRandomIntBetweenRange(const minValue : Integer; const maxValue : Integer) : Integer;
 begin
-
-
+    return RandomRange(minValue, maxValue);
 end.
 
