@@ -9,23 +9,40 @@ uses
 
 const
     // Range Variables
-    PWGENERICLOWERCASEARRAY : String = 'abcdefghijklmnopqrstuvwxyz';
-    PWGENERICUPPERCASEARRAY : String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    genericLowerCase : String = 'abcdefghijklmnopqrstuvwxyz';
+    genericUpperCase : String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     PWGENERICNUMBERARRAY    : String = '1234567890';
-    PWGENERICSPECIALARRAY : String   = '!#$%&+@.,;-=';
+    PWGENERICSPECIALARRAY   : String = '!#$%&+@.,;-=';
 
 type
 
-    TPWData = record { TPWData RECORD }
+    { TPWData RECORD }
+    TPWData = record
         pwmin_size, pwmax_size : Integer;   // Both 9
-        LWCASSE, UPPCASE : boolean;         // Both False
+        LWCASE, UPPCASE : boolean;         // Both False
         numbers : boolean;                  // True
         special : boolean;                  // False
-    end; { END : TPWData RECORD }
+    end;
+	{ END : TPWData RECORD }
+
+	{ TPWProcessData RECORD }
+	TPWProcessData = record
+	end;
+	{ END : TPWProcessData RECORD }
+
+	procedure generatePassword(PWData : TPWData ) : String;
 
 var
+   substring : String;
 
 implementation
+
+
+procedure generatePassword(const PWData : TPWData );
+begin
+
+
+end;
 
 end.
 
