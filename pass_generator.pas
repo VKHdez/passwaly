@@ -67,9 +67,6 @@ type
         public
     end; { -- END: FORM CLASS -- }
 
-
-
-
 var // LOCAL VARIABLES
     main_form: Tmain_form;
     PWData : TPWData = ( pwmin_size:9; pwmax_size :9; LWCASE :False; UPPCASE :False; numbers :True; special :False; );
