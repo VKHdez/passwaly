@@ -1,0 +1,27 @@
+# Ejecutables y binarios
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Archivos compilados de Free Pascal
+*.o
+*.ppu
+*.compiled
+*.res
+*.obj
+*.or
+
+# Archivos de sesión de Lazarus
+*.lps
+
+# Directorio de compilación
+lib/
+
+# Backups automáticos de Lazarus
+backup/
+
+# Archivos temporales
+*.bak
+*.~*
+*~
