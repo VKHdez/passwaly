@@ -10,10 +10,10 @@ uses
 
 const
     // Range Variables
-    genericLowerCase : String = 'abcdefghijklmnopqrstuvwxyz';
-    genericUpperCase : String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    genericLowerCase : String = 'abcdefghijklmnñopqrstuvwxyz';
+    genericUpperCase : String = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ';
     genericNumbers   : String = '1234567890';
-    genericSpecials  : String = '!#$%&+@.,;-=';
+    genericSpecials  : String = '!@*-_^~()[]{}|$:';
 
 type
 

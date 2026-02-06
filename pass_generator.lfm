@@ -7,6 +7,8 @@ object main_form: Tmain_form
   ClientHeight = 220
   ClientWidth = 400
   Menu = main_menu
+  Position = poDesigned
+  LCLVersion = '4.0.0.4'
   OnCreate = FormCreate
   object config_group_box: TGroupBox
     Left = 8
@@ -189,6 +191,7 @@ object main_form: Tmain_form
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     TabOrder = 3
+    OnClick = show_passClick
   end
   object copy_pass: TBitBtn
     Left = 200
@@ -232,7 +235,7 @@ object main_form: Tmain_form
     OnClick = copy_passClick
   end
   object copy_label: TLabel
-    Left = 72
+    Left = 16
     Height = 15
     Top = 200
     Width = 240

@@ -13,6 +13,13 @@ Simply password generator made in Pascal
 - 👁️ Show/hide password
 - 📋 Copy to clipboard
 
+## 📥 Download
+
+Download the latest version from the [Releases](https://github.com/VKHdez/pascal_pass_generator/releases) page.
+
+**Current OS Support:**
+- Windows
+
 ## 💻 Requirements
 
 - Lazarus IDE (or any Pascal IDE with form support)

@@ -978,11 +978,12 @@ object AboutForm: TAboutForm
     ParentFont = False
   end
   object version_label: TLabel
-    Left = 232
+    Left = 8
     Height = 15
     Top = 376
-    Width = 58
-    Caption = 'alpha 0.0.1'
+    Width = 67
+    Alignment = taRightJustify
+    Caption = 'Version 1.0.0'
     Font.Color = 11579568
     Font.Style = [fsItalic]
     ParentFont = False

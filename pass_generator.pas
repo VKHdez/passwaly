@@ -64,15 +64,17 @@ type
 		procedure help_itemClick(Sender: TObject);
 		procedure max_pass_lengthChange(Sender: TObject);
 		procedure min_pass_lengthChange(Sender: TObject);
+		procedure show_passClick(Sender: TObject);
 
 	    private
 		    procedure initDefaults;
+		    function countActiveChecks(): Integer;
         public
     end; { -- END: FORM CLASS -- }
 
 var // LOCAL VARIABLES
     main_form: Tmain_form;
-    PWData : TPWData = ( pwmin_size:9; pwmax_size :9; LWCASE :False; UPPCASE :False; numbers :True; special :True; );
+    PWData : TPWData = ( pwmin_size:9; pwmax_size :15; LWCASE :False; UPPCASE :False; numbers :True; special :True; );
 
 implementation
 
@@ -81,7 +83,14 @@ implementation
 { Tmain_form }
 { Procedure called when form is created}
 procedure Tmain_form.FormCreate(Sender: TObject);
+var
+    PrimaryMon: TMonitor;
 begin
+    { Center on primary monitor }
+    PrimaryMon := Screen.PrimaryMonitor;
+    Left := PrimaryMon.Left + (PrimaryMon.Width - Width) div 2;
+    Top := PrimaryMon.Top + (PrimaryMon.Height - Height) div 2;
+
     initDefaults;
 end;
 
@@ -96,6 +105,16 @@ begin
 	check_upper.Checked := PWData.UPPCASE;
 	check_number.Checked := PWData.numbers;
 	check_special.Checked := PWData.special;
+end;
+
+{ Count active checkboxes }
+function Tmain_form.countActiveChecks(): Integer;
+begin
+    Result := 0;
+    if check_lower.Checked then Inc(Result);
+    if check_upper.Checked then Inc(Result);
+    if check_number.Checked then Inc(Result);
+    if check_special.Checked then Inc(Result);
 end;
 
 { If 'check_size' then disabled min_pass_length }
@@ -118,12 +137,24 @@ end;
 { Enable/Disable special chars for pass generation }
 procedure Tmain_form.check_specialChange(Sender: TObject);
 begin
+    if (not check_special.Checked) and (countActiveChecks() < 2) then
+    begin
+        check_special.Checked := True;
+        ShowMessage('Min. two checks need to be enabled');
+        Exit;
+    end;
     PWData.special := check_special.Checked;
 end;
 
 { Enable/Disable upper case letters for pass generation }
 procedure Tmain_form.check_upperChange(Sender: TObject);
 begin
+    if (not check_upper.Checked) and (countActiveChecks() < 2) then
+    begin
+        check_upper.Checked := True;
+        ShowMessage('Min. two checks need to be enabled');
+        Exit;
+    end;
     PWData.UPPCASE := check_upper.Checked;
 end;
 
@@ -140,7 +171,7 @@ begin
 		copy_label.Visible := True;
 	end else begin
 		copy_label.Font.Color := clRed;
-		copy_label.Caption := 'There is not password generated...';
+		copy_label.Caption := 'Copy: No password generated...';
 		copy_label.Visible := True;
 	end;
 end;
@@ -148,12 +179,24 @@ end;
 { Enable/Disable lower case letters for pass generation }
 procedure Tmain_form.check_lowerChange(Sender: TObject);
 begin
+    if (not check_lower.Checked) and (countActiveChecks() < 2) then
+    begin
+        check_lower.Checked := True;
+        ShowMessage('Min. two checks need to be enabled');
+        Exit;
+    end;
     PWData.LWCASE := check_lower.Checked;
 end;
 
 { Enable/Disable numbers for pass generation }
 procedure Tmain_form.check_numberChange(Sender: TObject);
 begin
+    if (not check_number.Checked) and (countActiveChecks() < 2) then
+    begin
+        check_number.Checked := True;
+        ShowMessage('Min. two checks need to be enabled');
+        Exit;
+    end;
     PWData.numbers := check_number.Checked;
 end;
 
@@ -165,6 +208,22 @@ end;
 procedure Tmain_form.min_pass_lengthChange(Sender: TObject);
 begin
     PWData.pwmin_size := StrToIntDef(min_pass_length.Text,0);
+end;
+
+{ Show / Hide the generated password }
+procedure Tmain_form.show_passClick(Sender: TObject);
+begin
+    if( Length(pass_result_field.Text) > 0) then begin
+	    if( pass_result_field.PasswordChar = #0 ) then begin
+		    pass_result_field.PasswordChar := '*'
+		end else begin
+		    pass_result_field.PasswordChar := #0;
+		end;
+    end else begin
+        copy_label.Font.Color := clRed;
+    	copy_label.Caption := 'Show/Hide: No password generated...';
+    	copy_label.Visible := True;
+    end;
 end;
 
 { Generate password }
