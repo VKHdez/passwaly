@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  Menus, ExtCtrls, MaskEdit, main_class;
+  Menus, ExtCtrls, MaskEdit, main_class, about_view, Clipbrd;
 
 type
 
@@ -21,6 +21,7 @@ type
         Main access form
     }
     Tmain_form = class(TForm) { -- 'Tmain_form' CLASS -- }
+			  copy_label: TLabel;
         // Main Menu
         main_menu: TMainMenu;
             help_menu: TMenuItem;
@@ -57,8 +58,10 @@ type
         procedure check_sizeChange(Sender: TObject);
 		procedure check_specialChange(Sender: TObject);
 		procedure check_upperChange(Sender: TObject);
+		procedure copy_passClick(Sender: TObject);
         procedure FormCreate(Sender: TObject);
 		procedure GenerateClick(Sender: TObject);
+		procedure help_itemClick(Sender: TObject);
 		procedure max_pass_lengthChange(Sender: TObject);
 		procedure min_pass_lengthChange(Sender: TObject);
 
@@ -124,6 +127,24 @@ begin
     PWData.UPPCASE := check_upper.Checked;
 end;
 
+{ Copy the generated password to the clipboard }
+procedure Tmain_form.copy_passClick(Sender: TObject);
+var
+    finalPassLength : Integer;
+begin
+    finalPassLength := Length(pass_result_field.Text);
+    if( finalPassLength > 0) then begin
+	    Clipboard.AsText := pass_result_field.Text;
+		copy_label.Font.Color := clGreen;
+		copy_label.Caption := 'Password copied to your system clipboard...';
+		copy_label.Visible := True;
+	end else begin
+		copy_label.Font.Color := clRed;
+		copy_label.Caption := 'There is not password generated...';
+		copy_label.Visible := True;
+	end;
+end;
+
 { Enable/Disable lower case letters for pass generation }
 procedure Tmain_form.check_lowerChange(Sender: TObject);
 begin
@@ -150,6 +171,11 @@ end;
 procedure Tmain_form.GenerateClick(Sender: TObject);
 begin
     pass_result_field.Text := main_class.generatePassword(PWData);
+end;
+
+procedure Tmain_form.help_itemClick(Sender: TObject);
+begin
+    AboutForm.ShowModal;
 end;
 
 end. { END PROGRAM }

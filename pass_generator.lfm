@@ -7,7 +7,6 @@ object main_form: Tmain_form
   ClientHeight = 220
   ClientWidth = 400
   Menu = main_menu
-  LCLVersion = '4.0.0.4'
   OnCreate = FormCreate
   object config_group_box: TGroupBox
     Left = 8
@@ -230,6 +229,18 @@ object main_form: Tmain_form
       30DC303030E0303030E8303030E6303030F9303030E430303017FFFFFF00
     }
     TabOrder = 4
+    OnClick = copy_passClick
+  end
+  object copy_label: TLabel
+    Left = 72
+    Height = 15
+    Top = 200
+    Width = 240
+    Caption = 'Password copied to your system clipboard!'
+    Font.Color = 3785266
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+    Visible = False
   end
   object main_menu: TMainMenu
     Left = 360
@@ -238,6 +249,7 @@ object main_form: Tmain_form
       Caption = 'Help'
       object help_item: TMenuItem
         Caption = 'About'
+        OnClick = help_itemClick
       end
     end
   end
