@@ -28,7 +28,7 @@ Download the latest version from the [Releases](https://github.com/VKHdez/pascal
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/RAKINJA/pascal_pass_generator.git
+   git clone https://github.com/VKHdez/pascal_pass_generator.git
    ```
 
 2. Open `pass_generatorlpi.lpi` with Lazarus IDE
