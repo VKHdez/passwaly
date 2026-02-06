@@ -3,10 +3,11 @@ object main_form: Tmain_form
   Height = 220
   Top = 165
   Width = 400
-  Caption = 'Password Generator'
+  Caption = 'PASSWALY - Password generator'
   ClientHeight = 220
   ClientWidth = 400
   Menu = main_menu
+  LCLVersion = '4.0.0.4'
   OnCreate = FormCreate
   object config_group_box: TGroupBox
     Left = 8

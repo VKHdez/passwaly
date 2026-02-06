@@ -1,4 +1,4 @@
-# 🔐 Pascal Pass Generator
+# 🔐 PASSWALY - Pascal Pass Generator
 
 Simply password generator made in Pascal
 
