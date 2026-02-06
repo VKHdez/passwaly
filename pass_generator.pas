@@ -98,6 +98,7 @@ end;
 { If 'check_size' then disabled min_pass_length }
 procedure Tmain_form.check_sizeChange(Sender: TObject);
 begin
+
     if (check_size.Checked) then begin
 	    { Disabled both min_pass_length input and label }
         min_pass_length_text.Enabled := false;
