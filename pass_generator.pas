@@ -62,11 +62,13 @@ type
         procedure FormCreate(Sender: TObject);
 		procedure GenerateClick(Sender: TObject);
 		procedure help_itemClick(Sender: TObject);
-		procedure max_pass_lengthChange(Sender: TObject);
-		procedure min_pass_lengthChange(Sender: TObject);
+		procedure max_pass_lengthExit(Sender: TObject);
+		procedure min_pass_lengthExit(Sender: TObject);
 		procedure show_passClick(Sender: TObject);
+		function checkSize() : Boolean;
 
 	    private
+		    isInitializing: Boolean;
 		    procedure initDefaults;
 		    function countActiveChecks(): Integer;
         public
@@ -91,7 +93,9 @@ begin
     Left := PrimaryMon.Left + (PrimaryMon.Width - Width) div 2;
     Top := PrimaryMon.Top + (PrimaryMon.Height - Height) div 2;
 
+    isInitializing := True;
     initDefaults;
+    isInitializing := False;
 end;
 
 { Init default form values }
@@ -200,14 +204,44 @@ begin
     PWData.numbers := check_number.Checked;
 end;
 
-procedure Tmain_form.max_pass_lengthChange(Sender: TObject);
+procedure Tmain_form.max_pass_lengthExit(Sender: TObject);
 begin
-    PWData.pwmax_size := StrToIntDef(max_pass_length.Text,0);
+    if( checkSize() ) then
+        PWData.pwmax_size := StrToIntDef(max_pass_length.Text,0);
 end;
 
-procedure Tmain_form.min_pass_lengthChange(Sender: TObject);
+procedure Tmain_form.min_pass_lengthExit(Sender: TObject);
 begin
-    PWData.pwmin_size := StrToIntDef(min_pass_length.Text,0);
+    if( checkSize() ) then
+        PWData.pwmin_size := StrToIntDef(min_pass_length.Text,0);
+end;
+
+function Tmain_form.checkSize() : Boolean;
+var
+    minSize : Integer;
+	maxSize : Integer;
+begin
+    if isInitializing then begin
+        Result := True;
+        Exit;
+    end;
+
+    minSize := StrToIntDef(min_pass_length.Text, 0);
+    maxSize := StrToIntDef(max_pass_length.Text, 0);
+
+	if(minSize > maxSize) then begin
+	    ShowMessage('Min. size can not be greater than Max. size');
+		Result := False;
+		Exit;
+	end;
+
+	if(minSize = maxSize) then begin
+	    ShowMessage('Chose "Link size" option instead');
+		Result := False;
+		Exit;
+	end;
+
+	Result := True;
 end;
 
 { Show / Hide the generated password }

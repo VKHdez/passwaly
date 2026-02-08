@@ -1,111 +1,118 @@
 object main_form: Tmain_form
   Left = 1875
-  Height = 220
+  Height = 303
   Top = 165
-  Width = 400
+  Width = 530
   Caption = 'PASSWALY - Password generator'
-  ClientHeight = 220
-  ClientWidth = 400
+  ClientHeight = 303
+  ClientWidth = 530
+  Color = 15921900
+  Font.Height = -13
   Menu = main_menu
-  Position = poDesigned
-  LCLVersion = '4.0.0.4'
   OnCreate = FormCreate
   object config_group_box: TGroupBox
     Left = 8
-    Height = 96
+    Height = 136
     Top = 8
-    Width = 384
+    Width = 504
     Caption = 'Configuration'
-    ClientHeight = 76
-    ClientWidth = 380
+    ClientHeight = 114
+    ClientWidth = 500
+    ParentBackground = False
     TabOrder = 0
     object min_pass_length: TEdit
       Left = 82
-      Height = 23
+      Height = 25
       Top = 8
-      Width = 40
+      Width = 54
       NumbersOnly = True
       TabOrder = 0
-      OnChange = min_pass_lengthChange
+      OnExit = min_pass_lengthExit
     end
     object min_pass_length_text: TLabel
       Left = 26
-      Height = 15
+      Height = 17
       Top = 12
-      Width = 49
+      Width = 54
       Caption = 'Min. size:'
       ParentColor = False
     end
     object check_lower: TCheckBox
-      Left = 40
-      Height = 19
-      Top = 48
-      Width = 40
+      Left = 360
+      Height = 21
+      Top = 12
+      Width = 44
       Caption = 'a - z'
       TabOrder = 1
       OnChange = check_lowerChange
     end
     object check_upper: TCheckBox
-      Left = 96
-      Height = 19
+      Left = 360
+      Height = 21
       Top = 48
-      Width = 44
+      Width = 46
       Caption = 'A - Z'
       TabOrder = 2
       OnChange = check_upperChange
     end
     object check_number: TCheckBox
-      Left = 160
-      Height = 19
-      Top = 48
-      Width = 41
+      Left = 360
+      Height = 21
+      Top = 80
+      Width = 45
       Caption = '0 - 9'
       TabOrder = 3
       OnChange = check_numberChange
     end
     object check_special: TCheckBox
-      Left = 224
-      Height = 19
+      Left = 192
+      Height = 21
       Top = 48
-      Width = 114
+      Width = 125
       Caption = 'Special Characters'
       TabOrder = 4
       OnChange = check_specialChange
     end
     object check_size: TCheckBox
-      Left = 266
-      Height = 19
-      Top = 8
-      Width = 76
+      Left = 192
+      Height = 21
+      Top = 12
+      Width = 82
       Caption = 'Linked Size'
       TabOrder = 5
       OnChange = check_sizeChange
     end
     object max_pass_length_text: TLabel
-      Left = 146
-      Height = 15
-      Top = 12
-      Width = 50
+      Left = 26
+      Height = 17
+      Top = 60
+      Width = 57
       Caption = 'Max. size:'
       ParentColor = False
     end
     object max_pass_length: TEdit
-      Left = 200
-      Height = 23
-      Top = 8
-      Width = 40
+      Left = 82
+      Height = 25
+      Top = 56
+      Width = 54
       NumbersOnly = True
       TabOrder = 6
-      OnChange = max_pass_lengthChange
+      OnExit = max_pass_lengthExit
     end
   end
   object Generate: TBitBtn
     Cursor = crHandPoint
-    Left = 309
-    Height = 30
-    Top = 120
-    Width = 83
+    Left = 424
+    Height = 40
+    Top = 160
+    Width = 91
     Caption = 'Generate'
+    Color = 14079433
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = 5723981
+    Font.Height = -13
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     Glyph.Data = {
       BA030000424DBA0300000000000036000000280000000F0000000F0000000100
       2000000000008403000064000000640000000000000000000000FFFFFF00FFFF
@@ -138,25 +145,35 @@ object main_form: Tmain_form
       FF00FFFFFF00FFFFFF00FFFFFF0016BAEC0016BAEC0016BAEC0016BAEC0916BA
       ECDC16BAECF216BAECEE16BAECF216BAEC22FFFFFF00FFFFFF00FFFFFF00
     }
+    ParentFont = False
     TabOrder = 1
     OnClick = GenerateClick
   end
   object pass_result_field: TMaskEdit
-    Left = 8
-    Height = 30
-    Top = 120
-    Width = 288
+    Left = 16
+    Height = 38
+    Top = 162
+    Width = 392
     AutoSize = False
+    BorderStyle = bsNone
     EnableSets = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     MaxLength = 0
+    ParentFont = False
+    ReadOnly = True
     TabOrder = 2
     SpaceChar = '_'
   end
   object show_pass: TBitBtn
     Left = 16
-    Height = 30
-    Top = 160
-    Width = 163
+    Height = 38
+    Top = 216
+    Width = 192
     Caption = 'Show / Hide Pass.'
     Glyph.Data = {
       BA030000424DBA0300000000000036000000280000000F0000000F0000000100
@@ -194,10 +211,10 @@ object main_form: Tmain_form
     OnClick = show_passClick
   end
   object copy_pass: TBitBtn
-    Left = 200
-    Height = 30
-    Top = 160
-    Width = 75
+    Left = 224
+    Height = 38
+    Top = 216
+    Width = 184
     Caption = 'Copy'
     Glyph.Data = {
       BA030000424DBA0300000000000036000000280000000F0000000F0000000100
@@ -237,7 +254,7 @@ object main_form: Tmain_form
   object copy_label: TLabel
     Left = 16
     Height = 15
-    Top = 200
+    Top = 272
     Width = 240
     Caption = 'Password copied to your system clipboard!'
     Font.Color = 3785266
@@ -246,7 +263,7 @@ object main_form: Tmain_form
     Visible = False
   end
   object main_menu: TMainMenu
-    Left = 360
+    Left = 496
     Top = 8
     object help_menu: TMenuItem
       Caption = 'Help'
